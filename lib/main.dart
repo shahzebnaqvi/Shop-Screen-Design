@@ -9,6 +9,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List image = [
+      "https://media.wired.com/photos/60149f34056378f4af9cf9f1/1:1/w_1480,h_1480,c_limit/Gear-Topo-Athletic-Ultraventure-Pro.jpg",
+      "https://cdn.shopify.com/s/files/1/0107/9820/2938/products/gmmobile1_800x800_crop_center.png?v=1629754332",
+      "https://www.catfootwear.com/on/demandware.static/-/Sites-catfootwear_us-Library/default/dw38dae461/content/seasonal-content/homepage/2021/06/women-excavator-2.jpg"
+    ];
+    List text1 = ["Men's", "Men's", "Side Block"];
+    List text2 = ["FuelCell Echo", "Rebell Echo", "1200"];
+    List price = ["\$99.99", "\$139.99", "\$129.99"];
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -51,12 +60,40 @@ class MyApp extends StatelessWidget {
                   ),
                 ],
               ),
-              con('https://media.wired.com/photos/60149f34056378f4af9cf9f1/1:1/w_1480,h_1480,c_limit/Gear-Topo-Athletic-Ultraventure-Pro.jpg',
-                  "Men's ", "FuelCell Echo", "\$99.99"),
-              con('https://cdn.shopify.com/s/files/1/0107/9820/2938/products/gmmobile1_800x800_crop_center.png?v=1629754332',
-                  "Men's ", "Rebell Echo", "\$139.99"),
-              con('https://www.catfootwear.com/on/demandware.static/-/Sites-catfootwear_us-Library/default/dw38dae461/content/seasonal-content/homepage/2021/06/women-excavator-2.jpg',
-                  "Side Block ", "1200", "\$129.99"),
+              // Expanded(
+              //     child: ListView.builder(
+              //         itemCount: 3,
+              //         itemBuilder: (context, index) {
+              // return
+              // con(
+              //     '',
+              //     " ",
+              //     "",
+              //     "");
+              // con('',
+              //     "Men's ", "", "\$139.99"),
+              // con('',
+              //     " ", "1200", "\$129.99"),
+              // }))
+
+              ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                padding: EdgeInsets.only(top: 0),
+                itemCount: image.length,
+                itemBuilder: (context, index) {
+                  return Stack(alignment: Alignment.bottomRight, children: [
+                    con(image[index], text1[index], text2[index], price[index]),
+                    ElevatedButton(
+                        style: ButtonStyle(
+                            shape: MaterialStateProperty.all(CircleBorder()),
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.yellow)),
+                        onPressed: () {},
+                        child: Icon(Icons.card_travel))
+                  ]);
+                },
+              ),
             ],
           ),
         ),
